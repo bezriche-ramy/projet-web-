@@ -6,108 +6,151 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             image: "../imageVamos/nice.jpg",
             city: "Nice",
-            countryIcon: "../imageVamos/france.png",
             date: "May 5 - 10",
-            transportIcon: "../imageVamos/bus.png",
+            transport: 1,
+            activity: 1,
+            ticket: 1,
+            visa: 1,
             location: "La Promenade des Anglais",
             resortImage: "../imageVamos/resort.png",
             rating: 5,
-            title: "Arrispectif"
+            title: "Arrispectif",
+            agencyName: "TravelCo",
+            agencyRating: 4
         },
         {
             image: "../imageVamos/paris.jpg",
             city: "Paris",
-            countryIcon: "../imageVamos/france.png",
             date: "June 1 - 7",
-            transportIcon: "../imageVamos/train.png",
+            transport: 1,
+            activity: 0,
+            ticket: 1,
+            visa: 0,
             location: "Eiffel Tower",
             resortImage: "../imageVamos/resort.png",
             rating: 4,
-            title: "City of Light"
+            title: "City of Light",
+            agencyName: "ExploreMore",
+            agencyRating: 5
         },
         {
             image: "../imageVamos/rome.jpg",
             city: "Rome",
-            countryIcon: "../imageVamos/italy.png",
             date: "July 10 - 15",
-            transportIcon: "../imageVamos/plane.png",
+            transport: 1,
+            activity: 1,
+            ticket: 0,
+            visa: 0,
             location: "Colosseum",
             resortImage: "../imageVamos/resort.png",
             rating: 5,
-            title: "Eternal City"
+            title: "Eternal City",
+            agencyName: "Wanderlust",
+            agencyRating: 3
         },
         {
             image: "../imageVamos/barcelona.jpg",
             city: "Barcelona",
-            countryIcon: "../imageVamos/spain.png",
             date: "August 20 - 25",
-            transportIcon: "../imageVamos/bus.png",
+            transport: 0,
+            activity: 1,
+            ticket: 1,
+            visa: 1,
             location: "Sagrada Familia",
             resortImage: "../imageVamos/resort.png",
             rating: 4,
-            title: "Gaudi's Masterpiece"
+            title: "Gaudi's Masterpiece",
+            agencyName: "TravelCo",
+            agencyRating: 4
         },
         {
             image: "../imageVamos/london.jpg",
             city: "London",
-            countryIcon: "../imageVamos/uk.png",
             date: "September 5 - 10",
-            transportIcon: "../imageVamos/train.png",
+            transport: 1,
+            activity: 0,
+            ticket: 1,
+            visa: 1,
             location: "Big Ben",
             resortImage: "../imageVamos/resort.png",
             rating: 5,
-            title: "Historic Landmarks"
+            title: "Historic Landmarks",
+            agencyName: "ExploreMore",
+            agencyRating: 5
         },
         {
             image: "../imageVamos/berlin.jpg",
             city: "Berlin",
-            countryIcon: "../imageVamos/germany.png",
             date: "October 15 - 20",
-            transportIcon: "../imageVamos/plane.png",
+            transport: 0,
+            activity: 1,
+            ticket: 0,
+            visa: 0,
             location: "Brandenburg Gate",
             resortImage: "../imageVamos/resort.png",
             rating: 4,
-            title: "Cultural Hub"
+            title: "Cultural Hub",
+            agencyName: "Wanderlust",
+            agencyRating: 3
         }
     ];
 
-    // Function to create a card
-    const createCard = (item) => {
-        const card = document.createElement("div");
-        card.classList.add("card");
+    // Function to populate a card
+    const populateCard = (card, item) => {
+        card.querySelector(".card-image").src = item.image;
+        card.querySelector(".card-image").alt = item.location;
+        card.querySelector(".city-name").textContent = item.city;
+        card.querySelector(".agency-name").textContent = item.agencyName;
+        card.querySelector(".date").textContent = item.date;
 
-        card.innerHTML = `
-            <img src="${item.image}" alt="${item.location}" class="card-image">
-            <div class="header">
-                <div class="title-with-icon">
-                    <span class="city-name">${item.city}</span>
-                    <img src="${item.countryIcon}" alt="Country icon" class="contry-icon">
-                </div>
-            </div>
-            <div class="date">${item.date}</div>
-            <div class="transport-info">
-                <img src="${item.transportIcon}" alt="Transport icon" class="transport-icon">
-            </div>
-            <div class="location">
-                <div class="group-photo">
-                    <img src="../imageVamos/Group (1).png" alt="Group photo">
-                </div>
-                ${item.location}
-            </div>
-            <div class="resort-info-line">
-                <img src="${item.resortImage}" alt="Resort View" class="resort-image">
-                <div class="rating">${item.rating}</div>
-            </div>
-            <div class="card-title">${item.title}</div>
-            <img src="../imageVamos/next.png" alt="Next" class="arrow">
-        `;
+        // Conditionally add images based on values
+        if (item.transport === 1) {
+            card.querySelector(".transport-icon").src = "../imageVamos/transport.png";
+        } else {
+            card.querySelector(".transport-info").style.display = "none";
+        }
 
-        return card;
+        if (item.activity === 1) {
+            card.querySelector(".activity-icon").src = "../imageVamos/activity.png";
+        } else {
+            card.querySelector(".activity-info").style.display = "none";
+        }
+
+        if (item.ticket === 1) {
+            card.querySelector(".ticket-icon").src = "../imageVamos/ticket.png";
+        } else {
+            card.querySelector(".ticket-info").style.display = "none";
+        }
+
+        if (item.visa === 1) {
+            card.querySelector(".visa-icon").src = "../imageVamos/visa.png";
+        } else {
+            card.querySelector(".visa-info").style.display = "none";
+        }
+
+        card.querySelector(".location span").textContent = item.location;
+        card.querySelector(".resort-image").src = item.resortImage;
+        card.querySelector(".rating").textContent = item.rating;
+
+        // Set agency rating
+        const agencyRatingElement = card.querySelector(".agency-rating");
+        agencyRatingElement.innerHTML = "";
+        for (let i = 0; i < item.agencyRating; i++) {
+            const star = document.createElement("i");
+            star.classList.add("fas", "fa-star");
+            agencyRatingElement.appendChild(star);
+        }
+
+        // Set hotel title
+        card.querySelector(".card-title").textContent = item.title;
     };
 
     // Populate the container with cards
+    const cardTemplate = container.querySelector(".card");
+    container.innerHTML = ""; // Clear the container
     data.forEach(item => {
-        const card = createCard(item);
+        const card = cardTemplate.cloneNode(true);
+        populateCard(card, item);
         container.appendChild(card);
     });
 
@@ -158,4 +201,8 @@ document.addEventListener("DOMContentLoaded", () => {
             rating.appendChild(star);
         }
     });
+
+    // Set the username
+    const username = "Amine"; // This can be dynamically set
+    document.querySelector(".username").textContent = username;
 });

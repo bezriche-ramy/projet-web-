@@ -141,14 +141,15 @@ body {
     background: white;
     border-radius: 40px;
     padding: 15px; /* Reduced padding for less internal space */
-    width: 500px; /* Set a fixed width of 500px for each card */
+    width: 500px;
+
     position: relative;
     color: black;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px; /* Maintain some vertical space between rows */
     margin-left: 15px;
     margin-right: 15px;
-    height: 500px; /* Set a fixed height for all cards */
+    height: 600px; /* Increased height for all cards */
     margin-top: 50px;
 }
 /* Card 2 (centered) */
@@ -194,10 +195,21 @@ body {
     object-fit: contain;
 }
 
-.transport-icon {
+.transport-icon,
+.activity-icon,
+.ticket-icon,
+.visa-icon {
     width: 40px;
     height: 40px;
     object-fit: contain;
+}
+
+/* Icon grid */
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
 }
 
 /* Text elements */
@@ -235,4 +247,21 @@ body {
     text-align: center;
     margin-top: -30px; /* Move up by 30px */
     margin-left: 70px;
+}
+
+/* Agency info */
+.agency-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.agency-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.agency-rating i {
+    color: gold;
 }
