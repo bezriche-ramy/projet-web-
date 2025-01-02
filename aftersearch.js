@@ -166,18 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, index * 200); // Stagger the animation
     });
 
-    // Additional animation on hover for arrows
-    const arrows = document.querySelectorAll(".arrow");
-    arrows.forEach(arrow => {
-        arrow.style.transition = "transform 0.3s ease";
-        arrow.addEventListener("mouseover", () => {
-            arrow.style.transform = "translateX(10px)";
-        });
-        arrow.addEventListener("mouseout", () => {
-            arrow.style.transform = "translateX(0)";
-        });
-    });
-
     // Additional animation on hover for cards
     cards.forEach(card => {
         card.addEventListener("mouseover", () => {
