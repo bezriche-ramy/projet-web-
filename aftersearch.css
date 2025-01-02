@@ -103,6 +103,7 @@ body {
     margin-bottom: 30px; /* Maintain some vertical space between rows */
     height: auto; /* Allow height to adjust based on content */
     margin-top: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for transform and box-shadow */
 }
 
 .image-container {
@@ -115,16 +116,6 @@ body {
     border-radius: 10px;
     object-fit: cover;
     margin-bottom: 15px;
-}
-
-.arrow {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transform: rotate(90deg); /* Rotate the image to point right */
 }
 
 .rating i {
@@ -145,8 +136,7 @@ body {
 }
 
 /* Icons */
-.contry-icon,
-.arrow {
+.contry-icon {
     width: 30px;
     height: 30px;
     object-fit: contain;
@@ -221,6 +211,12 @@ body {
 
 .agency-rating i {
     color: gold;
+}
+
+/* Hover effect class */
+.card-hover {
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* Responsive design */

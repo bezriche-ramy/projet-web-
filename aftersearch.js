@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
             rating: 5,
             title: "Arrispectif",
             agencyName: "TravelCo",
-            agencyRating: 4
+            agencyRating: 4,
+            link: "nice.html" // Link to the new page
         },
         {
             image: "../imageVamos/paris.jpg",
@@ -31,7 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
             rating: 4,
             title: "City of Light",
             agencyName: "ExploreMore",
-            agencyRating: 5
+            agencyRating: 5,
+            link: "paris.html" // Link to the new page
         },
         {
             image: "../imageVamos/rome.jpg",
@@ -46,7 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
             rating: 5,
             title: "Eternal City",
             agencyName: "Wanderlust",
-            agencyRating: 3
+            agencyRating: 3,
+            link: "rome.html" // Link to the new page
         },
         {
             image: "../imageVamos/barcelona.jpg",
@@ -61,7 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
             rating: 4,
             title: "Gaudi's Masterpiece",
             agencyName: "TravelCo",
-            agencyRating: 4
+            agencyRating: 4,
+            link: "barcelona.html" // Link to the new page
         },
         {
             image: "../imageVamos/london.jpg",
@@ -76,7 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
             rating: 5,
             title: "Historic Landmarks",
             agencyName: "ExploreMore",
-            agencyRating: 5
+            agencyRating: 5,
+            link: "london.html" // Link to the new page
         },
         {
             image: "../imageVamos/berlin.jpg",
@@ -91,14 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
             rating: 4,
             title: "Cultural Hub",
             agencyName: "Wanderlust",
-            agencyRating: 3
+            agencyRating: 3,
+            link: "berlin.html" // Link to the new page
         }
     ];
 
     // Function to populate a card
     const populateCard = (card, item) => {
-        card.querySelector(".card-image").src = item.image;
-        card.querySelector(".card-image").alt = item.location;
+        const cardImage = card.querySelector(".card-image");
+        cardImage.src = item.image;
+        cardImage.alt = item.location;
+
         card.querySelector(".city-name").textContent = item.city;
         card.querySelector(".agency-name").textContent = item.agencyName;
         card.querySelector(".date").textContent = item.date;
@@ -143,6 +151,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Set hotel title
         card.querySelector(".card-title").textContent = item.title;
+
+        // Make the card clickable
+        card.addEventListener("click", () => {
+            window.location.href = item.link;
+        });
     };
 
     // Populate the container with cards
@@ -158,27 +171,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".card");
     cards.forEach((card, index) => {
         card.style.opacity = 0;
-        card.style.transform = "translateY(50px)";
+        card.style.transform = "translateX(-100vw)";
         setTimeout(() => {
-            card.style.transition = "all 0.5s ease";
+            card.style.transition = "all 1s ease";
             card.style.opacity = 1;
-            card.style.transform = "translateY(0)";
+            card.style.transform = "translateX(0)";
         }, index * 200); // Stagger the animation
     });
 
     // Additional animation on hover for cards
     cards.forEach(card => {
         card.addEventListener("mouseover", () => {
-            card.style.transform = "scale(1.05)";
-            card.style.boxShadow = "0 10px 20px rgba(0, 0, 0, 0.2)";
+            card.classList.add("card-hover");
         });
         card.addEventListener("mouseout", () => {
-            card.style.transform = "scale(1)";
-            card.style.boxShadow = "none";
+            card.classList.remove("card-hover");
         });
     });
 
-    // Generate stars based on rating
+    // Fade-in effect for images
+    const images = document.querySelectorAll(".card-image");
+    images.forEach(image => {
+        image.style.opacity = 0;
+        setTimeout(() => {
+            image.style.transition = "opacity 1s ease";
+            image.style.opacity = 1;
+        }, 500);
+    });
+
+    // Generate stars based on rating with animation
     const ratings = document.querySelectorAll(".rating");
     ratings.forEach(rating => {
         const ratingValue = parseInt(rating.textContent.trim());
@@ -186,7 +207,12 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < ratingValue; i++) {
             const star = document.createElement("i");
             star.classList.add("fas", "fa-star");
+            star.style.opacity = 0;
+            star.style.transition = `opacity 0.5s ease ${i * 0.2}s`;
             rating.appendChild(star);
+            setTimeout(() => {
+                star.style.opacity = 1;
+            }, i * 200);
         }
     });
 
