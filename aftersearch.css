@@ -97,11 +97,11 @@ body {
     padding: 15px; /* Reduced padding for less internal space */
     width: 100%;
     max-width: 400px; /* Set a max width for the card */
+    height: 650px; /* Set a fixed height */
     position: relative;
     color: black;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px; /* Maintain some vertical space between rows */
-    height: auto; /* Allow height to adjust based on content */
     margin-top: 50px;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for transform and box-shadow */
 }

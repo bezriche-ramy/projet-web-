@@ -4,157 +4,175 @@ document.addEventListener("DOMContentLoaded", () => {
     // Sample data
     const data = [
         {
-            image: "../imageVamos/nice.jpg",
-            city: "Nice",
-            date: "May 5 - 10",
-            transport: 1,
-            activity: 1,
-            ticket: 1,
-            visa: 1,
+            image1: "../imageVamos/nice.jpg",
+            Destination: "Nice",
+            date_depart: "2023-05-05",
+            date_retour: "2023-05-10",
+            Transport: true,
+            Activités: true,
+            billet_avion: true,
+            visa: true,
             location: "La Promenade des Anglais",
-            resortImage: "../imageVamos/resort.png",
+            image2: "../imageVamos/resort.png",
             rating: 5,
-            title: "Arrispectif",
-            agencyName: "TravelCo",
-            agencyRating: 4,
-            link: "nice.html" // Link to the new page
+            nom_hotel: "Arrispectif",
+            agence: {
+                nom: "TravelCo",
+                rating: 4
+            },
+            id: 1
         },
         {
-            image: "../imageVamos/paris.jpg",
-            city: "Paris",
-            date: "June 1 - 7",
-            transport: 1,
-            activity: 0,
-            ticket: 1,
-            visa: 0,
+            image1: "../imageVamos/paris.jpg",
+            Destination: "Paris",
+            date_depart: "2023-06-01",
+            date_retour: "2023-06-07",
+            Transport: true,
+            Activités: false,
+            billet_avion: true,
+            visa: false,
             location: "Eiffel Tower",
-            resortImage: "../imageVamos/resort.png",
+            image2: "../imageVamos/resort.png",
             rating: 4,
-            title: "City of Light",
-            agencyName: "ExploreMore",
-            agencyRating: 5,
-            link: "paris.html" // Link to the new page
+            nom_hotel: "City of Light",
+            agence: {
+                nom: "ExploreMore",
+                rating: 5
+            },
+            id: 2
         },
         {
-            image: "../imageVamos/rome.jpg",
-            city: "Rome",
-            date: "July 10 - 15",
-            transport: 1,
-            activity: 1,
-            ticket: 0,
-            visa: 0,
+            image1: "../imageVamos/rome.jpg",
+            Destination: "Rome",
+            date_depart: "2023-07-10",
+            date_retour: "2023-07-15",
+            Transport: true,
+            Activités: true,
+            billet_avion: false,
+            visa: false,
             location: "Colosseum",
-            resortImage: "../imageVamos/resort.png",
+            image2: "../imageVamos/resort.png",
             rating: 5,
-            title: "Eternal City",
-            agencyName: "Wanderlust",
-            agencyRating: 3,
-            link: "rome.html" // Link to the new page
+            nom_hotel: "Eternal City",
+            agence: {
+                nom: "Wanderlust",
+                rating: 3
+            },
+            id: 3
         },
         {
-            image: "../imageVamos/barcelona.jpg",
-            city: "Barcelona",
-            date: "August 20 - 25",
-            transport: 0,
-            activity: 1,
-            ticket: 1,
-            visa: 1,
+            image1: "../imageVamos/barcelona.jpg",
+            Destination: "Barcelona",
+            date_depart: "2023-08-20",
+            date_retour: "2023-08-25",
+            Transport: false,
+            Activités: true,
+            billet_avion: true,
+            visa: true,
             location: "Sagrada Familia",
-            resortImage: "../imageVamos/resort.png",
+            image2: "../imageVamos/resort.png",
             rating: 4,
-            title: "Gaudi's Masterpiece",
-            agencyName: "TravelCo",
-            agencyRating: 4,
-            link: "barcelona.html" // Link to the new page
+            nom_hotel: "Gaudi's Masterpiece",
+            agence: {
+                nom: "TravelCo",
+                rating: 4
+            },
+            id: 4
         },
         {
-            image: "../imageVamos/london.jpg",
-            city: "London",
-            date: "September 5 - 10",
-            transport: 1,
-            activity: 0,
-            ticket: 1,
-            visa: 1,
+            image1: "../imageVamos/london.jpg",
+            Destination: "London",
+            date_depart: "2023-09-05",
+            date_retour: "2023-09-10",
+            Transport: true,
+            Activités: false,
+            billet_avion: true,
+            visa: true,
             location: "Big Ben",
-            resortImage: "../imageVamos/resort.png",
+            image2: "../imageVamos/resort.png",
             rating: 5,
-            title: "Historic Landmarks",
-            agencyName: "ExploreMore",
-            agencyRating: 5,
-            link: "london.html" // Link to the new page
+            nom_hotel: "Historic Landmarks",
+            agence: {
+                nom: "ExploreMore",
+                rating: 5
+            },
+            id: 5
         },
         {
-            image: "../imageVamos/berlin.jpg",
-            city: "Berlin",
-            date: "October 15 - 20",
-            transport: 0,
-            activity: 1,
-            ticket: 0,
-            visa: 0,
+            image1: "../imageVamos/berlin.jpg",
+            Destination: "Berlin",
+            date_depart: "2023-10-15",
+            date_retour: "2023-10-20",
+            Transport: false,
+            Activités: true,
+            billet_avion: false,
+            visa: false,
             location: "Brandenburg Gate",
-            resortImage: "../imageVamos/resort.png",
+            image2: "../imageVamos/resort.png",
             rating: 4,
-            title: "Cultural Hub",
-            agencyName: "Wanderlust",
-            agencyRating: 3,
-            link: "berlin.html" // Link to the new page
+            nom_hotel: "Cultural Hub",
+            agence: {
+                nom: "Wanderlust",
+                rating: 3
+            },
+            id: 6
         }
     ];
 
     // Function to populate a card
     const populateCard = (card, item) => {
         const cardImage = card.querySelector(".card-image");
-        cardImage.src = item.image;
-        cardImage.alt = item.location;
+        cardImage.src = item.image1;
+        cardImage.alt = item.Destination;
 
-        card.querySelector(".city-name").textContent = item.city;
-        card.querySelector(".agency-name").textContent = item.agencyName;
-        card.querySelector(".date").textContent = item.date;
+        card.querySelector(".city-name").textContent = item.Destination;
+        card.querySelector(".agency-name").textContent = item.agence.nom;
+        card.querySelector(".date").textContent = `${item.date_depart} - ${item.date_retour}`;
 
         // Conditionally add images based on values
-        if (item.transport === 1) {
+        if (item.Transport) {
             card.querySelector(".transport-icon").src = "../imageVamos/transport.png";
         } else {
             card.querySelector(".transport-info").style.display = "none";
         }
 
-        if (item.activity === 1) {
+        if (item.Activités) {
             card.querySelector(".activity-icon").src = "../imageVamos/activity.png";
         } else {
             card.querySelector(".activity-info").style.display = "none";
         }
 
-        if (item.ticket === 1) {
+        if (item.billet_avion) {
             card.querySelector(".ticket-icon").src = "../imageVamos/ticket.png";
         } else {
             card.querySelector(".ticket-info").style.display = "none";
         }
 
-        if (item.visa === 1) {
+        if (item.visa) {
             card.querySelector(".visa-icon").src = "../imageVamos/visa.png";
         } else {
             card.querySelector(".visa-info").style.display = "none";
         }
 
         card.querySelector(".location span").textContent = item.location;
-        card.querySelector(".resort-image").src = item.resortImage;
+        card.querySelector(".resort-image").src = item.image2;
         card.querySelector(".rating").textContent = item.rating;
 
         // Set agency rating
         const agencyRatingElement = card.querySelector(".agency-rating");
         agencyRatingElement.innerHTML = "";
-        for (let i = 0; i < item.agencyRating; i++) {
+        for (let i = 0; i < item.agence.rating; i++) {
             const star = document.createElement("i");
             star.classList.add("fas", "fa-star");
             agencyRatingElement.appendChild(star);
         }
 
         // Set hotel title
-        card.querySelector(".card-title").textContent = item.title;
+        card.querySelector(".card-title").textContent = item.nom_hotel;
 
         // Make the card clickable
         card.addEventListener("click", () => {
-            window.location.href = item.link;
+            window.location.href = `/voyages/${item.id}/`;
         });
     };
 
